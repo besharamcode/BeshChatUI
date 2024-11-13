@@ -10,6 +10,7 @@ import {
 import { useFormik } from "formik";
 import { signupSchema } from "../../schema";
 import { router } from "expo-router";
+import { signup } from "../../API/Auth";
 
 export default function Login() {
   const theme = useTheme();
@@ -20,8 +21,10 @@ export default function Login() {
       password: "",
     },
     validationSchema: signupSchema,
-    onSubmit: (values) => {
-      console.log("Form data", values);
+    onSubmit: async (values) => {
+      console.log(values);
+      const response = await signup(values);
+      console.log(response);
     },
   });
   return (
